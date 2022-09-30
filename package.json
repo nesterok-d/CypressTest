@@ -1,0 +1,31 @@
+{
+  "name": "askona_autotests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open": "cross-env ./node_modules/.bin/cypress open",
+    "test": "cross-env ./node_modules/.bin/cypress run --browser chrome",
+    "checkout": "cypress run --spec cypress/e2e/**/*.ch.js --browser chrome",
+    "cy:run": "cypress run --browser chrome",
+    "checkout_process": "cypress run --spec \"cypress/e2e/checkout_process/*.js\" --browser chrome",
+    "listing": "cypress run --spec \"cypress/e2e/listing/*.js\" --browser chrome",
+    "one_click": "cypress run --spec \\\"cypress/e2e/show_cart/one_click/*.js\\\" --browser chrome",
+    "show_cart": "cypress run --spec \"cypress/e2e/show_cart/*.js\" --browser chrome",
+    "tester_lena": "cypress run --spec \"cypress/e2e/testers_sample/tester_lena/*.js\" --browser chrome",
+    "some_test": "cypress run --spec 'cypress/e2e'  --browser chrome",
+    "city_test": "cypress run --spec 'cypress/e2e/city/*.js'  --browser chrome"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "cypress": "^10.4.0",
+    "cypress-xpath": "^2.0.0"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.7.1",
+    "prettier": "^2.7.0",
+    "xpath": "^0.0.32"
+  }
+}
