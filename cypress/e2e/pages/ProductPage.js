@@ -27,6 +27,11 @@ class ProductPage {
     installmentClose = 'div#credit > div.popup__close'
     placeOrderBtn = 'button.cart-widget__actions-btn.btn-primary'
 
+    iconAddToFavourites = 'button[data-test-card-favorites]'
+    iconAddToFavouritesIsActive = 'button.is-active[data-test-card-favorites]'
+    messageAddToFavourites ='div.toast-message[kam-handled-172802="true"]'
+    messageAddToFavourites2 = 'div.toast-message[kam-handled-172802="true"] span'
+    
     selectRandomSize() {
         click(this.bedsSizeBtn)
         cy.get(this.sizeList).then((element)=>{

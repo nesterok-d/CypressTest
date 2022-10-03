@@ -3,11 +3,17 @@ import {assertEqual, click, setText, openPage, setMobileResolution} from "../sup
 import ProductPage from "../e2e/pages/ProductPage";
 import CartPage from "../e2e/pages/CartPage";
 
-describe('Избранное', () => {
+describe('Стравнение товаров', () => {
     const main = new MainPage();
     const card = new ProductPage();
     const cart = new CartPage();
-    let favouritesNumber;
+    let popupCityName;
+    let popupCityName2;
+    let cityNameInHeader;
+    let randomCityNumber;
+    let favouritesNumber1;
+    let favouritesNumber2;
+    let favouritesNumber3;
     let message1;
     localStorage.debug = 'cypress:*'
 
@@ -16,18 +22,18 @@ describe('Избранное', () => {
         main.closeCookie()
 
         cy.get(main.iconFavouritesNumber).then((number)=>{
-            favouritesNumber = number.text().trim()
-            cy.log(favouritesNumber)
-            assert(favouritesNumber ==="0", "ошибка")
+            favouritesNumber1 = number.text().trim()
+            cy.log(favouritesNumber1)
+            assert(favouritesNumber1 ==="5", "ошибка")
         })
 
         click(card.iconAddToFavourites)
         cy.wait(3000)
 
         cy.get(main.iconFavouritesNumber).then((number)=>{
-            favouritesNumber = number.text().trim()
-            cy.log(favouritesNumber)
-            assertEqual(favouritesNumber, "1")
+            favouritesNumber1 = number.text().trim()
+            cy.log(favouritesNumber1)
+            assertEqual(favouritesNumber1, "1")
         })
 
         click(card.iconAddToFavourites)
@@ -35,13 +41,13 @@ describe('Избранное', () => {
         cy.reload()
 
         cy.get(main.iconFavouritesNumber).then((number)=>{
-            favouritesNumber = number.text().trim()
-            cy.log(favouritesNumber)
-            assertEqual(favouritesNumber, "0")
+            favouritesNumber1 = number.text().trim()
+            cy.log(favouritesNumber1)
+            assertEqual(favouritesNumber1, "0")
         })
     })
 
-    it('проверка иконки избранного в карточке товара', () => {
+    /*it('проверка иконки избранного в карточке товара', () => {
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
         main.closeCookie()
         
@@ -74,9 +80,9 @@ describe('Избранное', () => {
             assertEqual(message1, "Товар добавлен в избранное")
         })
         cy.get(card.messageAddToFavourites).should("not.exist")
-
-        cy.wait(5500)
+        //cy.wait(5500)
         click(card.iconAddToFavourites)
+        //cy.wait(3000)
 
         cy.get(card.messageAddToFavourites).then((message)=>{
             message1 = message.text().trim()
@@ -84,7 +90,7 @@ describe('Избранное', () => {
             assertEqual(message1, "Товар удален из избранного")
         })
 
-    })
+    })*/
 
 
 

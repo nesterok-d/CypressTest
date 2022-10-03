@@ -8,6 +8,8 @@ class CartPage {
     cartName = 'div.cart-item__main > a'
     cityInput = 'input#city'
 
+    
+
     checkCartItem() {
         cy.xpath(this.cartItemBlock, {timeout: 10000}).should('be.visible')
         if (Cypress.config("viewportWidth") > 1000) {

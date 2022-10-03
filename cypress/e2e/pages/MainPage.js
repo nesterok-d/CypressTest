@@ -8,6 +8,8 @@ class MainPage {
     cityInHeader = 'div.header-main__location button'
     cityInHeader2 = 'div[class*=header__location]'
     cityListItem = 'div.cities__result a'
+    
+    iconFavouritesNumber = 'a.header-main__tools-favorite[href="/cabinet/favorite/"] div.header-main__tools-sticker'
 
     open(){
         cy.visit('/')
