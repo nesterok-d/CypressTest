@@ -31,6 +31,10 @@ class ProductPage {
     iconAddToFavouritesIsActive = 'button.is-active[data-test-card-favorites]'
     messageAddToFavourites ='div.toast-message[kam-handled-172802="true"]'
     messageAddToFavourites2 = 'div.toast-message[kam-handled-172802="true"] span'
+
+    iconAddForCompare = 'button.btn-compare'
+    iconAddForCompareIsActive = 'button.is-active[data-test-card-comparison]'
+
     
     selectRandomSize() {
         click(this.bedsSizeBtn)

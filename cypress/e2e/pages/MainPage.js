@@ -10,6 +10,16 @@ class MainPage {
     cityListItem = 'div.cities__result a'
     
     iconFavouritesNumber = 'a.header-main__tools-favorite[href="/cabinet/favorite/"] div.header-main__tools-sticker'
+    iconFavourites = 'a.header-main__tools-item--favorite'
+    iconComparation = 'a.header-main__tools-compare[href="/cabinet/compare/"] div.header-main__tools-sticker'
+
+    shops = 'a.kam-169694-header__shops'
+
+    catalog = 'div.swiper-slide-duplicate'
+    
+    
+
+    
 
     open(){
         cy.visit('/')
@@ -63,6 +73,11 @@ class MainPage {
             click(element.eq(number))
         })
     }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
 }
 
 export default MainPage
