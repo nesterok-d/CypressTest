@@ -78,6 +78,16 @@ class MainPage {
         return Math.floor(Math.random() * max);
     }
 
+
+
+    checkStringInOject(selector, textExpect, textActual) {
+        cy.get(selector).then((text)=>{
+            textActual = text.text().trim()
+            assert(textActual === textExpect, "ошибка")
+        })
+    }
+
+    
 }
 
 export default MainPage

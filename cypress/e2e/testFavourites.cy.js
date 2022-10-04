@@ -154,11 +154,8 @@ describe('Избранное', () => {
             main.closeCookie()
 
             cy.get(card.messageAddToFavourites).should('not.exist')
-            cy.get(main.iconFavouritesNumber).then((number)=>{
-                favouritesNumber = number.text().trim()
-                cy.log(favouritesNumber)
-                assert(favouritesNumber ==="0", "ошибка")
-            })
+
+            main.checkStringInOject(main.iconFavouritesNumber, "0", favouritesNumber)
             cy.get(catalog.catalogIconFavouritesActive).should('not.exist');
 
             cy.get(catalog.catalogIconFavourites).then((productList)=>{
@@ -167,23 +164,14 @@ describe('Избранное', () => {
             })
 
             cy.get(card.messageAddToFavourites).should('exist');
-            cy.get(card.messageAddToFavourites).then((textMess)=>{
-                message = textMess.text().trim()
-                assertEqual(message, "Товар добавлен в избранное")
-            })
-            cy.get(main.iconFavouritesNumber).then((number)=>{
-                favouritesNumber = number.text().trim()
-                assert(favouritesNumber ==="1", "ошибка")
-            })
+            main.checkStringInOject(card.messageAddToFavourites, "Товар добавлен в избранное", message)
+            main.checkStringInOject(main.iconFavouritesNumber, "1", favouritesNumber)
             cy.get(catalog.catalogIconFavouritesActive).should('exist');
 
             cy.reload()
 
             cy.get(card.messageAddToFavourites).should("not.exist")
-            cy.get(main.iconFavouritesNumber).then((number)=>{
-                favouritesNumber = number.text().trim()
-                assert(favouritesNumber ==="1", "ошибка")
-            })
+            main.checkStringInOject(main.iconFavouritesNumber, "1", favouritesNumber)
             cy.get(catalog.catalogIconFavouritesActive).should('exist');
 
             cy.get(catalog.catalogIconFavourites).then((productList)=>{
@@ -191,25 +179,12 @@ describe('Избранное', () => {
             })
 
             cy.get(card.messageAddToFavourites).should('exist');
-            cy.get(card.messageAddToFavourites).then((textMess)=>{
-                message = textMess.text().trim()
-                assertEqual(message, "Товар удален из избранного")
-            })
-            cy.get(main.iconFavouritesNumber).then((number)=>{
-                favouritesNumber = number.text().trim()
-                assert(favouritesNumber ==="0", "ошибка")
-            })
+            main.checkStringInOject(card.messageAddToFavourites, "Товар удален из избранного", message)
+            main.checkStringInOject(main.iconFavouritesNumber, "0", favouritesNumber)
             cy.get(catalog.catalogIconFavouritesActive).should('not.exist');
 
         });
-
-        
-        
-        
-        
-
     
-
     })
 
 })
