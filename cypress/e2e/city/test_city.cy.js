@@ -12,13 +12,13 @@ describe('Города', () => {
     let cityNameInHeader;
     let randomCityNumber;
 
-    /*it('Смена города в КТ', () => {
+    it('Смена города в КТ', () => {
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
         main.closeCookie()
         click(main.cityInHeader2)
 
         cy.get(main.cityListItem).then((cityList)=>{
-            randomCityNumber = getRandom(cityList.length)
+            randomCityNumber = main.getRandomInt(cityList.length)
             popupCityName = cityList.eq(randomCityNumber).text()
             click(cityList.eq(randomCityNumber))
         })
@@ -35,11 +35,12 @@ describe('Города', () => {
         click(card.installmentBtn)
         
         cy.get(card.installmentCity).then((city) => {
+            cy.log(cityNameInHeader)
             assertEqual(cityNameInHeader, city.text())
         })
-    })*/
+    })
 
-    it('Смена города в КТ', () => {
+    /*it('Смена города в КТ', () => {
         setMobileResolution()
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
         main.closeCookie()
@@ -65,7 +66,7 @@ describe('Города', () => {
         cy.get(card.installmentCity).then((city) => {
             assertEqual(cityNameInHeader, city.text())
         })
-    })
+    })*/
 
     /*it('Смена города в поп-ап рассрочки', () => {
         openPage('matrasy/udachnyj-start/askona-classic/classic-start.htm')
