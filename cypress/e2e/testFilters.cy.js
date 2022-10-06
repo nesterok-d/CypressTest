@@ -1,7 +1,7 @@
-import MainPage from "../e2e/pages/MainPage"
+import MainPage from "./pages/MainPage"
 import {assertEqual, click, setText, openPage, setMobileResolution} from "../support/commands";
-import ProductPage from "../e2e/pages/ProductPage";
-import FavouritesPage from "../e2e/pages/FavouritesPage"
+import ProductPage from "./pages/ProductPage";
+import FavouritesPage from "./pages/FavouritesPage"
 import CatalogPage from "./pages/CatalogPage";
 import { each } from "cypress/types/bluebird";
 
@@ -48,9 +48,7 @@ describe('Избранное', () => {
     
     localStorage.debug = 'cypress:*'
 
-    //cy.get("#username").type("tomsmith");
-
-    /*it('проверка фильтров ширины в каталоге матрасов', () => {
+    it('проверка фильтров ширины в каталоге матрасов', () => {
         
         openPage('matrasy/')
         main.closeCookie()
@@ -81,19 +79,15 @@ describe('Избранное', () => {
         cy.get(catalog.filterWidthMax).type("160");
         cy.wait(4000)
 
-
         cy.get(catalog.info).then((text)=>{
-            textActualMin140Max160 = text.text().trim()
-            
+            textActualMin140Max160 = text.text().trim() 
         })
-
 
         click(catalog.catalogButtonClear)
         cy.wait(4000)
 
         cy.get(catalog.info).then((text)=>{
             textActual2 = text.text().trim()
-
         })
 
         cy.get(catalog.info).then(()=>{
@@ -120,12 +114,10 @@ describe('Избранное', () => {
             assertEqual(numberOfProducts1, numberOfProducts2);
             assert(numberOfProductMin140 >= numberOfProductMin160, "ошибка");
             assert(numberOfProductMin140 >= numberOfProductMin140Max160, "ошибка");
-
         })
-    
-    })*/
+    })
 
-    /*it('проверка фильтров длины в каталоге кроватей', () => {
+    it('проверка фильтров длины в каталоге кроватей', () => {
         
         openPage('krovati/dvuspalnye/')
         main.closeCookie()
@@ -146,9 +138,9 @@ describe('Избранное', () => {
         cy.wait(4000)
         cy.url().should('eq', 'https://www.askona.ru/krovati/')
 
-    })*/
+    })
 
-    /*it('Фильтр Тип матраса в каталоге Матрасы', () => {
+    it('Фильтр Тип матраса в каталоге Матрасы', () => {
         
         openPage('matrasy/')
         main.closeCookie()
@@ -164,10 +156,10 @@ describe('Избранное', () => {
         cy.get(catalog.catalogButtonClear).should('not.exist')
         cy.get(catalog.filterBespruzhinnyeActive).should('not.exist')        
 
-    })*/
+    })
 
 
-    /*it('Фильтр Цена в каталоге Матрасы + Сброс фильтров', () => {
+    it('Фильтр Цена в каталоге Матрасы + Сброс фильтров', () => {
         
         openPage('matrasy/')
         main.closeCookie()
@@ -198,8 +190,8 @@ describe('Избранное', () => {
 
         cy.url().should('eq', 'https://www.askona.ru/matrasy/')  
 
-    })*/
-    //
+    })
+    
 
     it('Фильтр Бренд в каталоге Матрасы', () => {
         
