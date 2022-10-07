@@ -77,8 +77,13 @@ describe('Избранное', () => {
             main.checkStringInOject(main.iconFavouritesNumber, "0", favouritesNumber)
             cy.get(catalog.catalogIconFavouritesActive).should('not.exist');
 
+            cy.reload()
+            main.checkStringInOject(main.iconFavouritesNumber, "0", favouritesNumber)
+            cy.get(catalog.catalogIconFavouritesActive).should('not.exist');
+
         });
     
     })
+    
 
 })

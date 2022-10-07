@@ -1,39 +1,36 @@
-import MainPage from "./pages/MainPage"
-import {assertEqual, click, setText, openPage, setMobileResolution} from "../support/commands";
-import ProductPage from "./pages/ProductPage";
-import FavouritesPage from "./pages/FavouritesPage"
+import MainPage from "../e2e/pages/MainPage"
+import {assertEqual, click, openPage, compareNumbers} from "../support/commands";
 import CatalogPage from "./pages/CatalogPage";
-import { each } from "cypress/types/bluebird";
+
 
 describe('Избранное', () => {
     const main = new MainPage();
-    const card = new ProductPage();
-    const favour = new FavouritesPage();
     const catalog = new CatalogPage();
 
-    let favouritesNumber;
-    let message;
     let numberOfProducts1;
     let numberOfProducts2;
+    let numberOfProducts3;
+    let numberOfProducts4;
     let numberOfProductMin160;
     let numberOfProductMin140;
     let numberOfProductMin140Max160;
-    let numberOfProduct5;
     let textActual1;
     let textActual2;
+    let textActual3;
+    let textActual4;
     let numberOfProductsArray1;
     let numberOfProductsArray2;
+    let numberOfProductsArray3;
+    let numberOfProductsArray4;
     let numberOfProductsArrayMin160;
     let numberOfProductsArrayMin140;
     let numberOfProductsArrayMin140Max160;
     let textActualMin160;
     let textActualMin140;
     let textActualMin140Max160;
-    let url;
     let randomBrend;
     let brend;
     let brendArray;
-    let resalts;
     let placeholderHeightMin;
     let placeholderHeightMax;
     let randomFilter1
@@ -42,13 +39,14 @@ describe('Избранное', () => {
     let age
     let min
     let max
-    let sortType
-    let length
-    let sortTypeText
+    let ageArray
+    let acerbityArray
+    let priceArray = Array();
+    let priceArray2
     
     localStorage.debug = 'cypress:*'
 
-    it('проверка фильтров ширины в каталоге матрасов', () => {
+    it('Фильтр Ширина в каталоге Матрасы + Сброс фильтров', () => {
         
         openPage('matrasy/')
         main.closeCookie()
@@ -58,11 +56,10 @@ describe('Избранное', () => {
         })
 
         cy.url().should('include', 'https://www.askona.ru/matrasy/')
-        //assertEqual(url, 'https://www.askona.ru/matrasy/')  https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/
 
         cy.get(catalog.filterWidthMin).type("160");
         cy.wait(4000)
-        //assertEqual(cy.url(), 'https://www.askona.ru/matrasy/')   
+        assertEqual(cy.url(), 'https://www.askona.ru/matrasy/160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/')   
 
         cy.get(catalog.info).then((text)=>{
             textActualMin160 = text.text().trim()
@@ -71,6 +68,7 @@ describe('Избранное', () => {
         cy.get(catalog.filterWidthMin).clear();
         cy.get(catalog.filterWidthMin).type("140")
         cy.wait(4000)
+        assertEqual(cy.url(), 'https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/') 
 
         cy.get(catalog.info).then((text)=>{
             textActualMin140 = text.text().trim()
@@ -78,6 +76,7 @@ describe('Избранное', () => {
 
         cy.get(catalog.filterWidthMax).type("160");
         cy.wait(4000)
+        assertEqual(cy.url(), 'https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165x/')
 
         cy.get(catalog.info).then((text)=>{
             textActualMin140Max160 = text.text().trim() 
@@ -93,23 +92,18 @@ describe('Избранное', () => {
         cy.get(catalog.info).then(()=>{
             numberOfProductsArray2 = textActual2.split(' ');
             numberOfProducts2 = numberOfProductsArray2[4];
-            cy.log(`numberOfProducts2 = ${numberOfProducts2}`)
 
             numberOfProductsArray1 = textActual1.split(' ');
             numberOfProducts1 = numberOfProductsArray1[4];
-            cy.log(`numberOfProducts1 = ${numberOfProducts1}`)
 
             numberOfProductsArrayMin140Max160 = textActualMin140Max160.split(' ');
             numberOfProductMin140Max160 = numberOfProductsArrayMin140Max160[4]
-            cy.log(`numberOfProductMin140Max160 = ${numberOfProductMin140Max160}`)
 
             numberOfProductsArrayMin160 = textActualMin160.split(' ');
             numberOfProductMin160 = numberOfProductsArrayMin160[4]
-            cy.log(`numberOfProductMin160 = ${numberOfProductMin160}`)
 
             numberOfProductsArrayMin140 = textActualMin140.split(' ');
             numberOfProductMin140 = numberOfProductsArrayMin140[4]
-            cy.log(`numberOfProductMin140 = ${numberOfProductMin140}`)
 
             assertEqual(numberOfProducts1, numberOfProducts2);
             assert(numberOfProductMin140 >= numberOfProductMin160, "ошибка");
@@ -127,8 +121,7 @@ describe('Избранное', () => {
         })
 
         cy.url().should('eq', 'https://www.askona.ru/krovati/dvuspalnye/')
-        //assertEqual(url, 'https://www.askona.ru/matrasy/')  https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/
-
+    
         cy.get(catalog.filterLengthMin).type("200");
         cy.wait(4000)
         cy.url().should('eq', 'https://www.askona.ru/krovati/dvuspalnye/x200-i-203-i-205-i-210-i-215-i-220/')  
@@ -149,6 +142,7 @@ describe('Избранное', () => {
         cy.wait(4000)
         
         cy.url().should('eq', 'https://www.askona.ru/matrasy/bespruzhinnye/')
+        cy.get(catalog.filterBespruzhinnyeActive).should('exist')
 
         click(catalog.filterBespruzhinnye)
         cy.wait(4000)
@@ -204,11 +198,8 @@ describe('Избранное', () => {
             randomBrend = main.getRandomInt(brendList.length)
             brend = brendList.eq(randomBrend).text()
             click(brendList.eq(randomBrend))
-            cy.log(brend)
             cy.wait(3000)
-
             cy.url().should('include', brendArray[randomBrend])
-            
         })
 
         click(catalog.buttonClearFilters)
@@ -219,39 +210,25 @@ describe('Избранное', () => {
     })
 
 
-    // Комбинация фильтров + сортировка + сохранение результатов выборки при возврате в каталог из КТ
-    // <preconds>Осуществлен переход в каталог /matrasy/
-    // 1 В блоке с фильтрами выбираем рандомно по одному значению в фильтрах Жесткость и Возраст.
-    // В поля фильтра Высота вводим значения от и до (в пределах мин и макс)
-    // Клик на сортировку Цена
-    // Запоминаем кол-во товаров в выборке
-    // Переходим в первую карточку товара
-    // Возвращаемся в каталог: клик на кнопку назад в браузере.
-    // OP Проверяем урл: /matrasy/XX/height-ot-ZZ-do-QQ/YY/
-    // XX - выбранная жесткость
-    // ZZ и QQ - значения от и до, введенные в фильтре Высота
-    // YY - возраст
-    // Выбранный фильтр отмечен как активный (класс active у нажатой ссылки).
-    // Кол-во товаров в выборке то, что запоминали
-    // Товары в плитке отсортированы по цене от меньшей к большей.
-    // минимальная и максимальная ширина выбирается из данных в списках min_width_list и max_width_list
-    /*it('Комбинация фильтров + сортировка + сохранение результатов выборки при возврате в каталог из КТ', () => {
+    it('Комбинация фильтров + сортировка + сохранение результатов выборки при возврате в каталог из КТ', () => {
         
         openPage('matrasy/')
         main.closeCookie()
 
         brendArray = ['askona1','kids', 'basic', 'classic', 'family', 'kingkoil', 'mediflex', 'original-pro', 'ortho', 'serta', 'sleep-expert', 'sleep-professor']
+        ageArray = ['do-3-let','do-7-let', 'dlya-vzroslyh', 'dlya-podrostkov', 'dlya-pozhilyh', 'ot-7-let']
+        acerbityArray = ['myagkie','raznaya-zhestkost', 'myagkiy-1', 'srednei-zhestkosti', 'vysokaja-zhestkost', 'ekstra-zhestkie']
 
         // выбор жесткости
         cy.get(catalog.filterAcerbity).then((filterList)=>{
             randomFilter1 = main.getRandomInt(filterList.length)
-            acerbity = filterList.eq(randomFilter1).text()
+            acerbity = acerbityArray[randomFilter1]
             click(filterList.eq(randomFilter1))        
         })
         // выбор возраста
         cy.get(catalog.filterAge).then((filterList)=>{
             randomFilter2 = main.getRandomInt(filterList.length)
-            age = filterList.eq(randomFilter2).text()
+            age = ageArray[randomFilter2]
             click(filterList.eq(randomFilter2))        
         })
 
@@ -266,30 +243,56 @@ describe('Избранное', () => {
         // выбор минимальной и макстимальной высоты
         cy.get(catalog.filterHeightMin).then(()=>{
 
-            min = Number(placeholderHeightMin) + Number(main.getRandomInt(placeholderHeightMax-placeholderHeightMin))
-            max = Number(min) + Number(main.getRandomInt(placeholderHeightMax-min))
+            min = Number(placeholderHeightMin) + 1
+            max = Number(placeholderHeightMax) - 1
             cy.get(catalog.filterHeightMin).type(min);
             cy.get(catalog.filterHeightMax).type(max);
-            cy.log(`min = ${min}`)
-            cy.log(`max = ${max}`)      
+
+            cy.wait(2000)
+            //cy.url().should('eq', `https://www.askona.ru/matrasy/${acerbity}/height-ot-${min}-do-${max}/${age}/`)     
         })
-        
+
+        cy.get(catalog.info).then((text)=>{
+            textActual3 = text.text().trim()
+        })
+
         click(catalog.sortPrice)
-        cy.get(catalog.catalogItems).then((catalogList)=>{
-            click(catalogList.eq(1))
+        cy.wait(2000)
+
+        cy.get(catalog.catalogItems).then((catalogItemsList)=>{
+            click(catalogItemsList.eq(0))
+            //cy.wait(2000)
             cy.go('back')
-            cy.url().should('eq', 'https://www.askona.ru/matrasy/')
-            
+            cy.url().should('include', `https://www.askona.ru/matrasy/${acerbity}/height-ot-${min}-do-${max}/${age}/`)
+            cy.get(catalog.sortActive).should('exist') 
+        })
+
+        cy.wait(2000)
+
+        cy.get(catalog.info).then((text)=>{
+            textActual4 = text.text().trim()
+            numberOfProductsArray4 = textActual4.split(' ');
+            numberOfProducts4 = numberOfProductsArray4[4];
+            numberOfProductsArray3 = textActual3.split(' ');
+            numberOfProducts3 = numberOfProductsArray3[4];
+            assert(numberOfProducts3 == numberOfProducts4, `ошибка: numberOfProducts3 = ${numberOfProducts3}, numberOfProducts4 = ${numberOfProducts4}`);
 
         })
 
 
+        cy.get(catalog.catalogItems).then((catalogPriceList)=>{
+            for (let i = 0 ; i < catalogPriceList.length; i++){
+                priceArray[i] = catalogPriceList.eq(i).attr('data-price')
+            }
+            priceArray2 = priceArray.sort(compareNumbers)
+            for (let i = 0 ; i < catalogPriceList.length; i++){
+                assert(priceArray[i] == priceArray2[i]);
+            }
+        })
+        
+        cy.get(catalog.sortActive).should('exist') 
+
         
 
-        click(catalog.buttonClearFilters)
-        cy.wait(4000)
-        window.history.back();
-        cy.url().should('eq', 'https://www.askona.ru/matrasy/')
-
-    })*/
+    })
 })

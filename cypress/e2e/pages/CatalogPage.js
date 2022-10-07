@@ -6,9 +6,12 @@ class CatalogPage {
 
     
     
-    catalogItems = 'a.catalog-card__link'
+    catalogItems = 'div.catalog-card'
     catalogIconFavourites = 'div.catalog-card__favorite'
     catalogPrice = 'div.catalog-card div.catalog-card__price'
+    catalogWidth = 'div.catalog-card__props-sizes span'
+    catalogPricePercent = 'div.catalog-card div.catalog-card__price div.stickers--discount'
+    catalogPricePercentOld = 'div.catalog-card div.catalog-card__price span'
     productName1 = 'div.catalog-card__title'
     productName1 = 'div.catalog-card__title div'
     productSize = 'div.catalog-card__props-sizes span'
