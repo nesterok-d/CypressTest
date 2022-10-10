@@ -18,7 +18,7 @@ class MainPage {
     catalog = 'div.swiper-slide-duplicate'
     
     
-    leftMeтuMobile = 'div[class = "header-mobile__top"] button svg[data-name="IconMenu"]'
+    leftMeтuMobile = 'div#root-header button[title="Меню"]'
     cityListMobile = '#root-header > header > div > div.header-mobile__wrapper.open > nav > div.header-mobile__nav-main > div:nth-child(1) > button'
     cityInHeaderMobile = '#root-header > header > div > div.header-mobile__wrapper.open > nav > div.header-mobile__nav-main > div:nth-child(1) > button > span:nth-child(2)'
     cityListItemMobile = 'div.cities__result ul li a'
