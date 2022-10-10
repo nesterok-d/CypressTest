@@ -51,15 +51,15 @@ export function trimEverything(string){
 }
 
 export function withoutExternal(){
-    beforeEach(() => {
-        cy.intercept(
-            /(googletagmanager|kameleoon|retailrocket|flocktory|mindbox|flockapi-wrapper_iframe|mc\.yandex\.ru)+/gi,
-            []
-        ).as("trash_requests");
-        if (Cypress.env("disableMedia")) {
-            cy.intercept(/\.(jpg|jpeg|png|mp4|gif|webp)+$/gi, []).as("trash_requests_media");
-        }
-    });
+   
+    cy.intercept(
+        /(googletagmanager|kameleoon|retailrocket|flocktory|mindbox|flockapi-wrapper_iframe|mc\.yandex\.ru)+/gi,
+        []
+    ).as("trash_requests");
+    if (Cypress.env("disableMedia")) {
+        cy.intercept(/\.(jpg|jpeg|png|mp4|gif|webp)+$/gi, []).as("trash_requests_media");
+    }
+    
   }
 
 
