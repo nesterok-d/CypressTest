@@ -57,11 +57,11 @@ describe('Города', () => {
             click(cityList.eq(randomCityNumber))
         })
 
-        cy.wait(1000)
-        cy.reload()
-        cy.wait(1000)
+        cy.wait(10000)
+        //cy.reload()
+        //cy.wait(1000)
         click(main.leftMeтuMobile)
-        cy.wait(3000)
+        cy.wait(5000)
         cy.get(main.cityInHeaderMobile).then((cityInHeader) => {
             cityNameInHeader = cityInHeader.text().trim()
             assertEqual(String(popupCityName), String(cityNameInHeader))
