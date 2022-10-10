@@ -40,7 +40,7 @@ describe('Города', () => {
         })
     })
 
-    /*it('Смена города в КТ', () => {
+    it('Смена города в КТ', () => {
         setMobileResolution()
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
         main.closeCookie()
@@ -66,7 +66,7 @@ describe('Города', () => {
         cy.get(card.installmentCity).then((city) => {
             assertEqual(cityNameInHeader, city.text())
         })
-    })*/
+    })
 
     /*it('Смена города в поп-ап рассрочки', () => {
         openPage('matrasy/udachnyj-start/askona-classic/classic-start.htm')

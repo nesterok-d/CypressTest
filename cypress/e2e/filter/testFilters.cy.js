@@ -1,6 +1,6 @@
-import MainPage from "../e2e/pages/MainPage"
-import {assertEqual, click, openPage, compareNumbers} from "../support/commands";
-import CatalogPage from "./pages/CatalogPage";
+import MainPage from "../pages/MainPage"
+import {assertEqual, click, openPage, compareNumbers} from "../../support/commands";
+import CatalogPage from "../pages/CatalogPage";
 
 
 describe('Избранное', () => {

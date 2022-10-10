@@ -14,7 +14,8 @@
     "show_cart": "cypress run --spec \"cypress/e2e/show_cart/*.js\" --browser chrome",
     "tester_lena": "cypress run --spec \"cypress/e2e/testers_sample/tester_lena/*.js\" --browser chrome",
     "some_test": "cypress run --spec 'cypress/e2e'  --browser chrome",
-    "city_test": "cypress run --spec 'cypress/e2e/city/*.js'  --browser chrome"
+    "city_test": "cypress run --spec 'cypress/e2e/city/*.js'  --browser chrome",
+    "filter_test": "cypress run --spec 'cypress/e2e/filter/*.js'  --browser chrome"
   },
   "author": "",
   "license": "ISC",
