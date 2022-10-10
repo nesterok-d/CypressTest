@@ -44,20 +44,25 @@ describe('Города', () => {
         setMobileResolution()
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
         main.closeCookie()
-        click(main.cityInHeader2)
+        cy.wait(1000)
+        click(main.leftMeтuMobile)
+        cy.wait(1000)
+        click(main.cityInHeaderMobile)
 
         cy.get(main.cityListItem).then((cityList)=>{
-            randomCityNumber = getRandom(cityList.length)
+            randomCityNumber = main.getRandomInt(cityList.length)
             popupCityName = cityList.eq(randomCityNumber).text()
             click(cityList.eq(randomCityNumber))
         })
 
-        cy.wait(3000)
+        cy.wait(1000)
         cy.reload()
-
-        cy.get(main.cityInHeader2).then((cityInHeader) => {
+        cy.wait(1000)
+        click(main.leftMeтuMobile)
+        cy.wait(3000)
+        cy.get(main.cityInHeaderMobile).then((cityInHeader) => {
             cityNameInHeader = cityInHeader.text().trim()
-            assertEqual(popupCityName, cityNameInHeader)
+            assertEqual(String(popupCityName), String(cityNameInHeader))
         })
 
         cy.once('uncaught:exception', () => false);
@@ -66,6 +71,7 @@ describe('Города', () => {
         cy.get(card.installmentCity).then((city) => {
             assertEqual(cityNameInHeader, city.text())
         })
+        click(main.leftMeтuMobile)
     })
 
     /*it('Смена города в поп-ап рассрочки', () => {
