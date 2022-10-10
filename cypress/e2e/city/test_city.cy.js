@@ -1,5 +1,5 @@
 import MainPage from "../pages/MainPage"
-import {assertEqual, click, setText, openPage, setMobileResolution} from "../../support/commands";
+import {assertEqual, click, setText, openPage, setMobileResolution,  withoutExternal} from "../../support/commands";
 import ProductPage from "../pages/ProductPage";
 import CartPage from "../pages/CartPage";
 
@@ -41,9 +41,10 @@ describe('Города', () => {
     })*/
 
     it('Смена города в КТ', () => {
-        withoutExternal()
+        
         setMobileResolution()
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
+        withoutExternal()
         main.closeCookie()
         cy.wait(1000)
         click(main.leftMeтuMobile)
