@@ -1,7 +1,7 @@
 require("cypress-xpath");
 
 export function setMobileResolution() {
-    cy.viewport(414, 896)
+    cy.viewport("iphone-5")
 }
 
 export function getRandom(number) {

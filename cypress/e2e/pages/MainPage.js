@@ -18,10 +18,12 @@ class MainPage {
     catalog = 'div.swiper-slide-duplicate'
     
     
-    leftMeтuMobile = 'div#root-header button[title="Меню"]'
+    leftMenuMobile = 'div#root-header button[title="Меню"]'
     cityListMobile = '#root-header > header > div > div.header-mobile__wrapper.open > nav > div.header-mobile__nav-main > div:nth-child(1) > button'
-    cityInHeaderMobile = '#root-header > header > div > div.header-mobile__wrapper.open > nav > div.header-mobile__nav-main > div:nth-child(1) > button > span:nth-child(2)'
+    cityInHeaderMobile = 'div#root-header i.ico--map~span:nth-child(2)'
     cityListItemMobile = 'div.cities__result ul li a'
+    leftMenuMobileClouse = 'button.header-mobile__burger svg'
+    popupClose = 'div.popup__close'
     
 
     open(){
