@@ -12,7 +12,7 @@ describe('Города', () => {
     let cityNameInHeader;
     let randomCityNumber;
 
-    /*it('Смена города в КТ', () => {
+    it('Смена города в КТ', () => {
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
         main.closeCookie()
         click(main.cityInHeader2)
@@ -38,9 +38,9 @@ describe('Города', () => {
             cy.log(cityNameInHeader)
             assertEqual(cityNameInHeader, city.text())
         })
-    })*/
+    })
 
-    it('Смена города в КТ', () => {
+    /*it('Смена города в КТ', () => {
         
         setMobileResolution()
         openPage('matrasy/udachnyj-start/askona-basic/basic-easy.htm')
@@ -78,7 +78,7 @@ describe('Города', () => {
             cy.log("text+++++++++++++++++++++++++++++++++++++++")
         })
         click(main.popupClose)
-    })
+    })*/
 
     /*it('Смена города в поп-ап рассрочки', () => {
         openPage('matrasy/udachnyj-start/askona-classic/classic-start.htm')

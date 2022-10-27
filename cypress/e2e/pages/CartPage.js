@@ -4,9 +4,11 @@ class CartPage {
 
     cartItemBlock = '//section[@class=\'cart-block order-list\']'
     cartItemBlockTitle = 'div.cart-block__title'
-    cartPrice = 'ul > li:nth-child(1) > span:nth-child(2)'
+    cartPrice = 'span.cw-totals__amount'
     cartName = 'div.cart-item__main > a'
     cityInput = 'input#city'
+    buttonPlaceOrder ='#root-header > header > div.cart-widget > div.cart-widget__widget > div > div > div.cart-widget__scroll-inner > div.cart-widget__actions.mb-32 > button.btn.btn-md.btn-lg.btn-primary.cart-widget__actions-btn'
+    
 
     
 

@@ -3,15 +3,17 @@ import {click, getRandom} from "../../support/commands";
 class MainPage {
     search = '#search-form-input'
     submit = '#search-form button.header-main__submit'
-    productCard = 'a[data-const=product_link'
+    productCard = 'a[data-const=product_link]'
     cookieBtn = 'button.js-cookie-data-warning__close'
     cityInHeader = 'div.header-main__location button'
     cityInHeader2 = 'div[class*=header__location]'
     cityListItem = 'div.cities__result a'
+    cityInput = 'div.select-city__inner input[placeholder="Поиск"]'
     
     iconFavouritesNumber = 'a.header-main__tools-favorite[href="/cabinet/favorite/"] div.header-main__tools-sticker'
     iconFavourites = 'a.header-main__tools-item--favorite'
     iconComparation = 'a.header-main__tools-compare[href="/cabinet/compare/"] div.header-main__tools-sticker'
+    iconAddToCart = 'button.header-main__tools-item--order'
 
     shops = 'a.kam-169694-header__shops'
 
