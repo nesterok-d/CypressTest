@@ -7,7 +7,8 @@ class CatalogPage {
     
     
     catalogItems = 'div.catalog__items[id="filter-items"] div.catalog-card'
-    catalogItemsAvailable = 'div.catalog__items[id="filter-items"] div.catalog-card[data-available="true"]'
+    catalogItemsAvailable = 'div.catalog__items[id="filter-items"] div.catalog-card[data-available="true"] a'
+    catalogItemsAvailable1 = '#filter-items > div > div.catalog-card__image'
     catalogIconFavourites = 'div.catalog-card__favorite'
     catalogPrice = 'div.catalog-card div.catalog-card__price'
     catalogWidth = 'div.catalog-card__props-sizes span'

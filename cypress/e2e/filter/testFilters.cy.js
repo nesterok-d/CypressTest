@@ -55,31 +55,34 @@ describe('Избранное', () => {
             textActual1 = text.text().trim()
         })
 
-        cy.url().should('include', 'https://www.askona.ru/matrasy/')
+        //cy.url().should('eq', 'https://www.askona.ru/matrasy/')
 
         cy.get(catalog.filterWidthMin).type("160");
         cy.wait(4000)
-        assertEqual(cy.url(), 'https://www.askona.ru/matrasy/160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/')   
+        //  
 
         cy.get(catalog.info).then((text)=>{
             textActualMin160 = text.text().trim()
+            cy.url().should('eq', 'https://www.askona.ru/matrasy/160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/') 
         })
 
         cy.get(catalog.filterWidthMin).clear();
         cy.get(catalog.filterWidthMin).type("140")
         cy.wait(4000)
-        assertEqual(cy.url(), 'https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/') 
+        // 
 
         cy.get(catalog.info).then((text)=>{
             textActualMin140 = text.text().trim()
+            cy.url().should('eq', 'https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165-i-170-i-175-i-180-i-190-i-195-i-200x/')
         })
 
         cy.get(catalog.filterWidthMax).type("160");
         cy.wait(4000)
-        assertEqual(cy.url(), 'https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160-i-165x/')
+        //
 
         cy.get(catalog.info).then((text)=>{
             textActualMin140Max160 = text.text().trim() 
+            cy.url().should('eq', 'https://www.askona.ru/matrasy/140-i-148-i-150-i-153-i-158-i-160x/')
         })
 
         click(catalog.catalogButtonClear)
@@ -111,7 +114,7 @@ describe('Избранное', () => {
         })
     })
 
-    it('проверка фильтров длины в каталоге кроватей', () => {
+    /*it('проверка фильтров длины в каталоге кроватей', () => {
         
         openPage('krovati/dvuspalnye/')
         main.closeCookie()
@@ -294,5 +297,5 @@ describe('Избранное', () => {
 
         
 
-    })
+    })*/
 })

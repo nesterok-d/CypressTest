@@ -14,6 +14,7 @@ class MainPage {
     iconFavourites = 'a.header-main__tools-item--favorite'
     iconComparation = 'a.header-main__tools-compare[href="/cabinet/compare/"] div.header-main__tools-sticker'
     iconAddToCart = 'button.header-main__tools-item--order'
+    iconCart = 'button[title="Корзина"]'
 
     shops = 'a.kam-169694-header__shops'
 
@@ -24,6 +25,7 @@ class MainPage {
     cityListMobile = '#root-header > header > div > div.header-mobile__wrapper.open > nav > div.header-mobile__nav-main > div:nth-child(1) > button'
     cityInHeaderMobile = 'div#root-header i.ico--map~span:nth-child(2)'
     cityListItemMobile = 'div.cities__result ul li a'
+
     leftMenuMobileClouse = 'button.header-mobile__burger svg'
     popupClose = 'div.popup__close'
     
