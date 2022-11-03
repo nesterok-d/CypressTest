@@ -1,6 +1,7 @@
 import {click, getRandom} from "../../support/commands";
 
 class MainPage {
+
     search = '#search-form-input'
     submit = '#search-form button.header-main__submit'
     productCard = 'a[data-const=product_link]'
@@ -94,6 +95,42 @@ class MainPage {
             textActual = text.text().trim()
             assert(textActual === textExpect, "ошибка")
         })
+    }
+
+    getNumberOfItems(){
+
+    }
+
+    assertURlEq(expected){
+        cy.url().should('eq', expected, {timeout: 10000})
+    }
+
+    assertURlInc(expected){
+        cy.url().should('include', expected, {timeout: 10000})
+    }
+
+    randomChoice(selector, number){
+        cy.get(selector).then((list)=>{
+            number = Math.floor(Math.random() * list.length)
+            click(list.eq(number))
+        })
+
+    }
+
+    cityList(){
+        click(this.leftMenuMobile)
+        click(this.cityListMobile)
+        cy.wait(2000)
+    }
+
+    choiceCity(array){
+        click(this.cityInput)
+        cy.get(this.cityInput).type(array[this.getRandomInt(array.length)]);
+        cy.get(this.cityListItem).then((cityList)=>{
+            //popupCityName = cityList.eq(0).text()
+            click(cityList.eq(0))
+        })
+        cy.wait(1000)
     }
 
     

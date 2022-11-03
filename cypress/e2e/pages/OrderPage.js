@@ -1,4 +1,4 @@
-import {click} from "../../support/commands"
+import {click, assertEqual} from "../../support/commands"
 
 class OrderPage {
 
@@ -25,6 +25,11 @@ class OrderPage {
     inputAdress = 'input[id="pickupAddress"]'
     inputAdressChoice = 'div.field-with-suggestions__item'
     //'#map > ymaps > ymaps > ymaps > ymaps.ymaps-2-1-79-places-pane > ymaps:nth-child(9)'
+
+
+    checkOrderPrice(textPriceOrder, textCartPrice, textDisposalPrice){
+        assertEqual(textPriceOrder[0]+textPriceOrder[1], String(Number(textCartPrice[0]+textCartPrice[1])+Number(textDisposalPrice[0]+textDisposalPrice[1])))
+    }
 
 }
 

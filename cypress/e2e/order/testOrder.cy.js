@@ -18,17 +18,23 @@ describe('выбор доставки', () => {
     let adress2;
     let arrayCitys = new Array();
     let textCartPrice;
+    let textCartPrice2
+    let textCartPrice3
     let textDisposalPrice;
+    let textDisposalPrice2
+    let textDisposalPrice3
     let textPriceOrder
-    let summ
     let textPriceOrder2 = new Array();
     let textPriceOrder3
-    let textCartPrice2
-    let textDisposalPrice2
-    let textCartPrice3
-    let textDisposalPrice3
+    let summ
+    
+    
+    
+    
+    
+    
 
-    /*it('Выбор пункта самовывоза - наличие/кликабельность кнопки Изменить пункт', () => {
+    it('Выбор пункта самовывоза - наличие/кликабельность кнопки Изменить пункт', () => {
 
         openPage('podushki/askona1-i-bedgear/')
         main.closeCookie()
@@ -211,86 +217,7 @@ describe('выбор доставки', () => {
         })
 
 
-    })*/
-
-    it('Доставка в ПВЗ - наличие/кликабельность кнопки Изменить пункт', () => {
-
-        openPage('podushki/askona1-i-bedgear/')
-        main.closeCookie()
-
-        click(main.cityInHeader2)
-        cy.wait(2000)
-
-        cy.get(main.cityListItem).then((cityList)=>{
-            popupCityName = cityList.eq(0).text()
-            click(cityList.eq(0))
-        })
-
-        cy.get(catalog.catalogItemsAvailable).then((productList)=>{
-            randomNumber = main.getRandomInt(productList.length)
-            cy.log(randomNumber)
-            click(productList.eq(randomNumber))
-        })
-
-        cy.get(catalog.catalogItemsAvailable).then((productList)=>{
-            click(productList.eq(main.getRandomInt(productList.length)))
-        })
-
-        cy.wait(2000)
-
-        click(prod.addToBasketElement)
-        cy.wait(2000)
-        cy.get(main.iconAddToCart).click({ force: true })
-        cy.wait(2000)    
-        
-        cy.get(cart.cartPrice).then((price)=>{
-            textCartPrice = price.text()
-        })
-
-        cy.get(cart.buttonPlaceOrder).click({ force: true })
-        cy.wait(2000)
-
-        cy.get(order.radioToDeliveryPlace).click({ force: true })
-        cy.get(order.radioToDeliveryPlace).should('exist').should('be.checked')
-        click(order.deliveryPlace)
-        cy.wait(2000)
-        //cy.get(order.placeMapActive).should('exist')
-        cy.get(order.map).should('exist')
-        cy.wait(2000)
-
-        /*cy.get(order.adressOnMap).then((cityList)=>{
-
-            cy.get(cityList.eq(1)).click({ force: true })
-            cy.get(cityList.eq(1)).click({ force: true })
-        })*/
-        //click(order.adressOnMap)
-
-        /*cy.get(order.inputAdress).type("Настасьинский пер, д 8 стр 2, кв 6");
-        cy.wait(2000)
-        cy.get(order.inputAdressChoice).then((cityList)=>{
-
-            cy.get(cityList.eq(0)).click({ force: true })
-        })
-
-        
-        click(order.map)*/
-        cy.get(document.querySelector('#map > ymaps > ymaps > ymaps > ymaps.ymaps-2-1-79-places-pane > ymaps:nth-child(3)')).click()
-
-        /*cy.get(order.adressChoicePlace).then((adressList)=>{
-            randomNumber = main.getRandomInt(adressList.length)
-            adress1 = adressList.eq(randomNumber).text()
-            cy.log(adress1)
-            cy.log(randomNumber)
-
-        })
-
-        cy.get(order.buttonChoicePlace).then((placeList)=>{
-            click(placeList.eq(randomNumber))
-            cy.log(randomNumber)
-
-        })
-
-        cy.get(order.modalShops).should('not.exist')*/
-
     })
+
+    
 })

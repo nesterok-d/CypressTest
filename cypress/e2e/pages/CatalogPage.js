@@ -1,9 +1,9 @@
-import {click, getRandom} from "../../support/commands";
-
+import {assertEqual, click, getRandom} from "../../support/commands";
+import MainPage from "../pages/MainPage"
 
 class CatalogPage {
  
-
+    main = new MainPage();
     
     
     catalogItems = 'div.catalog__items[id="filter-items"] div.catalog-card'
@@ -51,8 +51,8 @@ class CatalogPage {
     filterBespruzhinnye = 'a[title="Беспружинный"]'
     filterBespruzhinnyeActive = 'a.checked[title="Беспружинный"]'
     filterTypeMobile = 'div[data-target="#extra_sec_filter_type-modal"]' 
-    filterTypeMobileBespruzhinnye = 'label[for="extra_sec_filter_type-bespruzhinnye"]'
-    filterTypeMobileBespruzhinnyeCheck = '#extra_sec_filter_type-bespruzhinnye'
+    //filterTypeMobile = 'label[for="extra_sec_filter_type-bespruzhinnye"]'
+    filterTypeMobileCheck = '#extra_sec_filter_type-bespruzhinnye'
 
     sortPrice = '#filter-mobile > div > button:nth-child(2)'
     sortActive = 'button.sorting-button.active'
@@ -70,19 +70,89 @@ class CatalogPage {
     catalogButtonClearMobile = '#filter > div > div > div.modal-header > button.reset-filter'
     catalogSubButtonClearMobile ='#dlina-modal > div > div > div.modal-body > div.filters-mobile__modal-title > button'
 
-    getNumberOfProducts(numberOfProducts) {
+    choiceSubFilterMobile(type, border, text){
+        this.clickTypeFilterMobile(type)
+        cy.get(border).clear();
+        cy.get(border).type(text)
+        cy.wait(4000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
+    choiceFilterMobile(border, text){
+        click(this.filterMobile)
+        cy.get(border).clear();
+        cy.get(border).type(text)
+        cy.wait(4000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
+    clickTypeFilterMobile(type){
+        click(this.filterMobile)
+        click(type)
+    }
+    clearFilterChoiceMobile(border){
+        click(this.filterMobile)
+        cy.get(border).clear();
+        cy.wait(2000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
+    changeFilterChoiceMobile(borderForClear, border, text){
+        click(this.filterMobile)
+        cy.get(borderForClear).clear();
+        cy.get(border).type(text)
+        cy.wait(2000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
+    choiceTypeFilterMobile(type){
+        click(type)
+        cy.wait(2000)
+        cy.get(this.filterButtonShow).click({ force: true })
+        cy.wait(3000)
+    }
 
-        let numberOfProductsArray = Array();
-        let textActual;
+    clearFilterMobile(){
+        click(this.filterMobile)
+        cy.wait(4000)
+        cy.get(this.catalogButtonClearMobile).click({ force: true })
+        cy.wait(4000)
+    }
+    clearSubFilterMobile(SubFilter){
+        click(this.filterMobile)
+        click(SubFilter)
+        click(this.catalogSubButtonClearMobile)
+        cy.wait(4000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
 
-        cy.get(this.info).then((text)=>{
-            textActual = text.text().trim()
-            numberOfProductsArray = textActual.split(' ');
-            numberOfProducts = numberOfProductsArray[4].trim()
-            //cy.log(numberOfProducts)
-            
+    filterTypeMobileClear(type){
+        click(this.filterMobile)
+        click(this.filterTypeMobile)
+        cy.get('#extra_sec_filter_type-'+type).should('exist').should('be.checked')
+        click('label[for="extra_sec_filter_type-'+type+'"]')
+        cy.get('#extra_sec_filter_type-'+type).should('not.be.visible').should('not.be.checked')
+        cy.wait(2000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
+
+    choiceFilterTypeMobile(type){
+        click(this.filterMobile)
+        click(this.filterTypeMobile)
+        cy.get('#extra_sec_filter_type-'+type).should('not.be.visible').should('not.be.checked')
+        click('label[for="extra_sec_filter_type-'+type+'"]')
+        cy.get('#extra_sec_filter_type-'+type).should('exist').should('be.checked')
+        cy.wait(2000)
+        cy.get(this.filterButtonShow).click({ force: true })
+    }
+    checkFilterTypeMobile(type){
+        click(this.filterMobile)
+        click(this.filterTypeMobile)
+        cy.get('#extra_sec_filter_type-'+type).should('not.be.visible').should('not.be.checked')
+        
+    }
+    coiceCatalogItems(){
+        cy.get(this.catalogItemsAvailable).then((productList)=>{
+            cy.get(productList.eq(Math.floor(Math.random() *productList.length))).click({ force: true })
         })
-    } 
+        cy.wait(1000)
+    }
 
 }
 
